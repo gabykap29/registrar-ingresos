@@ -1,0 +1,43 @@
+<%- include ('../partials/head.ejs'); %>
+<div class="container-xxl position-relative bg-white d-flex p-0">
+<%- include ('../layouts/spinner.ejs'); %>
+<%- include ('../layouts/sidebar.ejs'); %>
+
+<div class="content">
+    <%- include ('../layouts/navbar.ejs'); %>
+
+    <div class="container-fluid pt-4 px-4 border">
+        <div class="card" style="height: 75vh;">
+            <div class="card-header bg-light">
+                Ultimos Ingresos
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped small table-bordered">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>dni</th>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>Domicilio</th>
+                                <th>Clase</th>
+                                <th>Fecha y Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody id="registers">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script
+    src="/js/entries/show.js"
+    ></script>
+
+    <%- include ('../layouts/footer.ejs'); %>
+</div>
+
+</div>
+<%- include ('../partials/bottom.ejs'); %>
+
