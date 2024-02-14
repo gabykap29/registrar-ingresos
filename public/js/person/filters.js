@@ -20,7 +20,7 @@ formPerson.addEventListener('submit',async(e)=>{
             data.data.forEach(person => {
                 let entriesHTML = ''; // Variable para almacenar las entradas de la persona como HTML
                 person.entries.forEach(entry => {
-                    entriesHTML += `<li>${entry.date} - ${entry.description || 'Sin descripción'}</li>`;
+                    entriesHTML += `<li>${dayjs(entry.date).format('DD-MM-YYYY HH:mm:ss')} - ${entry.description || 'Sin descripción'}</li>`;
                 });
             
                 registers.innerHTML += `
