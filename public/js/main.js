@@ -39,169 +39,63 @@
             $(this).css("width", $(this).attr("aria-valuenow") + '%');
         });
     }, {offset: '80%'});
-
-
-    // Calender
-    $('#calender').datetimepicker({
-        inline: true,
-        format: 'L'
-    });
-
-
-    // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1000,
-        items: 1,
-        dots: true,
-        loop: true,
-        nav : false
-    });
-
-
-    // Worldwide Sales Chart
-    var ctx1 = $("#worldwide-sales").get(0).getContext("2d");
-    var myChart1 = new Chart(ctx1, {
-        type: "bar",
-        data: {
-            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
-            datasets: [{
-                    label: "USA",
-                    data: [15, 30, 55, 65, 60, 80, 95],
-                    backgroundColor: "rgba(0, 156, 255, .7)"
-                },
-                {
-                    label: "UK",
-                    data: [8, 35, 40, 60, 70, 55, 75],
-                    backgroundColor: "rgba(0, 156, 255, .5)"
-                },
-                {
-                    label: "AU",
-                    data: [12, 25, 45, 55, 65, 70, 60],
-                    backgroundColor: "rgba(0, 156, 255, .3)"
-                }
-            ]
-            },
-        options: {
-            responsive: true
-        }
-    });
-
-
-    // Salse & Revenue Chart
-    var ctx2 = $("#salse-revenue").get(0).getContext("2d");
-    var myChart2 = new Chart(ctx2, {
-        type: "line",
-        data: {
-            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
-            datasets: [{
-                    label: "Salse",
-                    data: [15, 30, 55, 45, 70, 65, 85],
-                    backgroundColor: "rgba(0, 156, 255, .5)",
-                    fill: true
-                },
-                {
-                    label: "Revenue",
-                    data: [99, 135, 170, 130, 190, 180, 270],
-                    backgroundColor: "rgba(0, 156, 255, .3)",
-                    fill: true
-                }
-            ]
-            },
-        options: {
-            responsive: true
-        }
-    });
-    
-
-
-    // Single Line Chart
-    var ctx3 = $("#line-chart").get(0).getContext("2d");
-    var myChart3 = new Chart(ctx3, {
-        type: "line",
-        data: {
-            labels: [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150],
-            datasets: [{
-                label: "Salse",
-                fill: false,
-                backgroundColor: "rgba(0, 156, 255, .3)",
-                data: [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15]
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
-
-
-    // Single Bar Chart
-    var ctx4 = $("#bar-chart").get(0).getContext("2d");
-    var myChart4 = new Chart(ctx4, {
-        type: "bar",
-        data: {
-            labels: ["Italy", "France", "Spain", "USA", "Argentina"],
-            datasets: [{
-                backgroundColor: [
-                    "rgba(0, 156, 255, .7)",
-                    "rgba(0, 156, 255, .6)",
-                    "rgba(0, 156, 255, .5)",
-                    "rgba(0, 156, 255, .4)",
-                    "rgba(0, 156, 255, .3)"
-                ],
-                data: [55, 49, 44, 24, 15]
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
-
-
-    // Pie Chart
-    var ctx5 = $("#pie-chart").get(0).getContext("2d");
-    var myChart5 = new Chart(ctx5, {
-        type: "pie",
-        data: {
-            labels: ["Italy", "France", "Spain", "USA", "Argentina"],
-            datasets: [{
-                backgroundColor: [
-                    "rgba(0, 156, 255, .7)",
-                    "rgba(0, 156, 255, .6)",
-                    "rgba(0, 156, 255, .5)",
-                    "rgba(0, 156, 255, .4)",
-                    "rgba(0, 156, 255, .3)"
-                ],
-                data: [55, 49, 44, 24, 15]
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
-
-
-    // Doughnut Chart
-    var ctx6 = $("#doughnut-chart").get(0).getContext("2d");
-    var myChart6 = new Chart(ctx6, {
-        type: "doughnut",
-        data: {
-            labels: ["Italy", "France", "Spain", "USA", "Argentina"],
-            datasets: [{
-                backgroundColor: [
-                    "rgba(0, 156, 255, .7)",
-                    "rgba(0, 156, 255, .6)",
-                    "rgba(0, 156, 255, .5)",
-                    "rgba(0, 156, 255, .4)",
-                    "rgba(0, 156, 255, .3)"
-                ],
-                data: [55, 49, 44, 24, 15]
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
-
-    
+  
 })(jQuery);
 
+window.addEventListener('beforeprint', function() {
+    const titleFilters = document.querySelector('#titleFilters');
+    try {
+        const sidebar = document.querySelector('#sidebar');
+        const navbar = document.querySelector('#navbar');
+        const accordion = document.querySelector('.accordion');
+        const cardFilters = document.querySelector('#cardFilters');
+        sidebar.style.display = 'none';
+        navbar.style.display = 'none';
+        accordion.style.display = 'none';
+        cardFilters.style = 'margin-top: 0px; margin-bottom: 0px;';
+    } catch (error) {
+        console.log(error);
+    };
+    const dateStartElement = document.getElementById('dateStart');
+    const dateEndElement = document.getElementById('dateEnd');
+
+    if (dateStartElement && dateEndElement) {
+        const dateStartValue = dateStartElement.value;
+        const dateEndValue = dateEndElement.value;
+
+    if (dateStartValue && dateEndValue) {
+        try {
+            const fechaActualUTC = dayjs(dateStartValue);
+            const fechaActualUTC3 = fechaActualUTC.subtract(0, 'hour');
+            const fechaFormateadaStart = fechaActualUTC3.format('DD-MM-YYYY HH:mm:ss');
+
+            const fechaActualUTC2 = dayjs(dateEndValue);
+            const fechaActualUTC32 = fechaActualUTC2.subtract(0, 'hour');
+            const fechaFormateadaEnd = fechaActualUTC32.format('DD-MM-YYYY HH:mm:ss');
+
+            titleFilters.innerHTML = `<h6 class="text-center"> <u>Registros del ${fechaFormateadaStart} al ${fechaFormateadaEnd}<u/> </h6>`;
+        
+        } catch (error) {
+            console.error('Error al parsear las fechas:', error);
+        }
+    } else {
+        console.error('Los valores de fecha están vacíos');
+    }
+} else {
+    console.error('No se encontraron los elementos de fecha');
+}
+
+});
+
+window.addEventListener('afterprint', function() {
+    try {
+        const sidebar = document.querySelector('#sidebar');
+        const navbar = document.querySelector('#navbar');
+        const accordion = document.querySelector('.accordion');
+        sidebar.style.display = 'block';
+        navbar.style.display = 'block';
+        accordion.style.display = 'block';
+    } catch (error) {
+        console.log(error);
+    }
+});

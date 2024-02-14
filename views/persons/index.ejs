@@ -7,31 +7,42 @@
     <%- include ('../layouts/navbar.ejs'); %>
 
     <div class="container-fluid pt-4 px-4 border">
-      <div class="card overflow-auto" style="height: 75vh; max-height: 76vh;" id="cardFilters">
-            <div class="card-header bg-light" id="titleFilters">
-                Filtrar Ingresos
+        <div class="card overflow-auto" style="height: 75vh; max-height: 76vh;">
+            <div class="card-header bg-light">
+                Buscar Personas
             </div>
             <div class="card-body">
                 <div class="accordion accordion-flush border" id="accordionFlushExample">
                     <div class="accordion-item">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                          Filtrar
+                          Filtros
                         </button>
                       </h2>
                       <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            <form class="row g-3 needs-validation" id="formFilters">
-                                <div class="col-md-6">
-                                  <label for="validationCustom01" class="form-label">Fecha Inicial</label>
-                                  <input type="datetime-local" class="form-control" id="dateStart" value="Mark" required>
+                            <form class="row g-3 needs-validation" id="formPerson">
+                                <div class="col-4 position-relative">
+                                  <label for="validationTooltip01" class="form-label">DNI</label>
+                                  <input type="number" class="form-control" id="dni" >
                                 </div>
-                                <div class="col-md-6">
-                                  <label for="validationCustom02" class="form-label">Fecha Final</label>
-                                  <input type="datetime-local" class="form-control" id="dateEnd" value="Otto" required>
+                                <div class="col-4 position-relative">
+                                  <label for="validationTooltip02" class="form-label">Apellido</label>
+                                  <input type="text" class="form-control" id="lastname" >
+                                </div>
+                                <div class="col-4 position-relative">
+                                  <label for="validationTooltipUsername" class="form-label">Nombre</label>
+                                  <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="name" aria-describedby="validationTooltipUsernamePrepend" >
+                                  </div>
+                                </div>
+                                <div class="col-4 position-relative">
+                                  <label for="validationTooltip03" class="form-label">Domicilio</label>
+                                  <input type="text" class="form-control" id="address" >
                                 </div>
                                 <div class="col-12">
-                                  <button class="btn btn-primary" type="submit">Aplicar</button>
+                                  <button class="btn btn-primary" type="submit">Buscar</button>
+                                  <button class="btn btn-secondary">Borrar Campos</button>
                                 </div>
                               </form>
                         </div>    
@@ -51,6 +62,9 @@
                             </tr>
                         </thead>
                         <tbody id="registers">
+                            <tr>
+                                <td class="text-center alert alert-warning" colspan="6">Ingrese un patrón de busqueda para continuar</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -58,7 +72,7 @@
         </div>
     </div>
     <script
-    src="/js/entries/show.js"
+    src="/js/person/filters.js"
     ></script>
 
     <%- include ('../layouts/footer.ejs'); %>

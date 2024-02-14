@@ -38,13 +38,13 @@ formEntries.addEventListener('submit', async (e) => {
         }else if(data.status === 400){
             Swal.fire({
                 title: "Error!",
-                text: data.message,
+                text: data.menssage,
                 icon: "error"
               });
         }else{
             Swal.fire({
                 title: "Error!",
-                text: 'Error interno del servidor, vuelva a intentar mas tarde o contacte al administrador del sistema',
+                text: data.errors[0].msg,
                 icon: "error"
               });
         };

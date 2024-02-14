@@ -7,7 +7,7 @@
     <%- include ('../layouts/navbar.ejs'); %>
 
     <div class="container-fluid pt-4 px-4 border">
-        <div class="card" style="height: 75vh;">
+        <div class="card overflow-auto" style="height: 75vh; max-height: 76vh;">
             <div class="card-header bg-light">
                 Ultimos Ingresos
             </div>
@@ -21,7 +21,8 @@
                                 <th>Nombre</th>
                                 <th>Domicilio</th>
                                 <th>Clase</th>
-                                <th>Fecha y Hora</th>
+                                <th>Registro</th>
+
                             </tr>
                         </thead>
                         <tbody id="registers">

@@ -1,11 +1,9 @@
 import Entries from "../models/Entries.js";
 import Persons from "../models/Persons.js";
 import { Op } from "sequelize";
-import dayjs from "dayjs";
 export const createEntry = async (req, res) => {
     try {
         const { ingreso, dni, lastname, name, address='Sin datos', clase='sin Datos', description='Sin datos'} = req.body;
-        
         const person = await Persons.findOne({where: {dni:dni}});
 
         if (!person) {
@@ -52,10 +50,9 @@ export const getEntries = async (req, res) => {
                 model: Persons,
                 as: 'persons',
             }],
-            
-            size: size,
+            limit: size,
             offset: page * size,
-            order: [['date', 'DESC']], 
+            order: [['date', 'DESC']],
         });
         
         return res.status(200).json(entries);

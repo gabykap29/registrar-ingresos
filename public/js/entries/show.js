@@ -1,8 +1,8 @@
 const registers = document.getElementById('registers');
 const formFilters = document.getElementById('formFilters');
-const getEntries = async (req, res) => {
+const getEntries = async () => {
     try {
-        const res = await fetch('/api/registros');
+        const res = await fetch('/api/registros?page=0&size=10');
         const data = await res.json();
         if(data.length === 0){
             return [];
@@ -30,16 +30,16 @@ const renderEntries = async () => {
         const fechaActualUTC3 = fechaActualUTC.subtract(0, 'hour');
     
         // Formatear la fecha y hora para mostrarla en la interfaz de usuario
-        const fechaFormateada = fechaActualUTC3.format('YYYY-MM-DD HH:mm:ss');
+        const fechaFormateada = fechaActualUTC3.format('DD-MM-YYYY HH:mm:ss');
 
         registers.innerHTML += `
             <tr>
-                <td>${entry.persons.dni}</td>
-                <td>${entry.persons.lastname}</td>
-                <td>${entry.persons.name}</td>
-                <td>${entry.persons.address}</td>
-                <td>${entry.persons.class}</td>
-                <td>${fechaFormateada}</td>
+                <td>${entry.persons.dni || 'Sin datos'}</td>
+                <td>${entry.persons.lastname || 'Sin datos'}</td>
+                <td>${entry.persons.name || 'Sin datos'}</td>
+                <td>${entry.persons.address || 'Sin datos'}</td>
+                <td>${entry.persons.class || 'Sin datos'}</td>
+                <td>${fechaFormateada} -- ${entry.description || 'Sin descripción'}</td>
             </tr>
         `;
     });
@@ -76,17 +76,17 @@ document.addEventListener('DOMContentLoaded',()=>{
             const fechaActualUTC3 = fechaActualUTC.subtract(0, 'hour');
         
             // Formatear la fecha y hora para mostrarla en la interfaz de usuario
-            const fechaFormateada = fechaActualUTC3.format('YYYY-MM-DD HH:mm:ss');
+            const fechaFormateada = fechaActualUTC3.format('DD-MM-YYYY HH:mm:ss');
 
             registers.innerHTML += `
-                <tr>
-                    <td>${entry.persons.dni}</td>
-                    <td>${entry.persons.lastname}</td>
-                    <td>${entry.persons.name}</td>
-                    <td>${entry.persons.address}</td>
-                    <td>${entry.persons.class}</td>
-                    <td>${fechaFormateada}</td>
-                </tr>
+            <tr>
+            <td>${entry.persons.dni || 'Sin datos'}</td>
+            <td>${entry.persons.lastname || 'Sin datos'}</td>
+            <td>${entry.persons.name || 'Sin datos'}</td>
+            <td>${entry.persons.address || 'Sin datos'}</td>
+            <td>${entry.persons.class || 'Sin datos'}</td>
+            <td>${fechaFormateada} -- ${entry.description || 'Sin descripción'}</td>
+        </tr>
             `;
         });
 
