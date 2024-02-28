@@ -1,13 +1,16 @@
 import express from 'express';
 const routerEntries = express.Router();
 import {body, validationResult} from 'express-validator';
-import { createEntry, getEntries, getEntriesByDate } from '../controllers/entries.controller.js';
+import { createEntry, editEntry, getEntries, getEntriesByDate, getEntry } from '../controllers/entries.controller.js';
 
 routerEntries.get('/registros/crear', (req, res) => {
     res.render('entries/create')
 });
 routerEntries.get('/registros/filtrar', (req, res) => {
     res.render('entries/show')
+});
+routerEntries.get('/registros/editar/:id', (req, res) => {
+    res.render('entries/edit', {id: req.params.id})
 });
 
 
@@ -31,7 +34,10 @@ routerEntries.post('/create', [
     createEntry(req, res);
 });
 
+
 routerEntries.get('/api/registros', getEntries);
 routerEntries.get('/api/registros/filtrar',getEntriesByDate);
+routerEntries.put('/api/registros/:id', editEntry);
+routerEntries.get('/api/registro/:id', getEntry);
 
 export default routerEntries;

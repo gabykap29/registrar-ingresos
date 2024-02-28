@@ -1,0 +1,63 @@
+<%- include ('../partials/head.ejs'); %>
+<div class="container-xxl position-relative bg-white d-flex p-0">
+<%- include ('../layouts/spinner.ejs'); %>
+<%- include ('../layouts/sidebar.ejs'); %>
+
+<div class="content">
+    <%- include ('../layouts/navbar.ejs'); %>
+
+    <div class="container-fluid pt-4 px-4 border">
+        <div class="card bg-light" >
+            <div class="card-header ">
+                Editar Ingreso
+            </div>
+            <div class="card-body">
+                <form class="row g-3 needs-validation" id="formEntriesEdit" data-id="<%= id %>">
+                    <div class="col-6 position-relative">
+                      <label for="validationTooltip01" class="form-label">DNI</label>
+                      <input type="number" class="form-control" id="dni" required>
+                    </div>
+                    <div class="col-6 position-relative">
+                      <label for="validationTooltip02" class="form-label">Apellido</label>
+                      <input type="text" class="form-control" id="lastname" required>
+                    </div>
+                    <div class="col-6 position-relative">
+                      <label for="validationTooltipUsername" class="form-label">Nombre</label>
+                      <div class="input-group has-validation">
+                        <input type="text" class="form-control" id="name" aria-describedby="validationTooltipUsernamePrepend" required>
+                      </div>
+                    </div>
+                    <div class="col-6 position-relative">
+                      <label for="validationTooltip03" class="form-label">Domicilio</label>
+                      <input type="text" class="form-control" id="address" required>
+                    </div>
+                    <div class="col-6 position-relative">
+                      <label for="validationTooltip05" class="form-label">Clase</label>
+                      <input type="text" class="form-control" id="clase" required>
+                    </div>
+                    <div class="col-6 position-relative">
+                        <label for="validationTooltip06" class="form-label">Ingreso</label>
+                        <input type="datetime-local" class="form-control" id="ingreso" required>
+                      </div>
+                    <div class="col-12 position-relative">
+                        <label for="validationTooltip04" class="form-label">Observaciones</label>
+                        <textarea class="form-control" id="description" rows="3" required></textarea>
+                    </div>
+                    <div class="col-12">
+                      <button class="btn btn-success" type="submit">Guardar Cambios</button>
+                      <button class="btn btn-secondary">Borrar Campos</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include ('../layouts/footer.ejs'); %>
+</div>
+    <script
+    src="/js/entries/edit.js"
+    ></script>
+</div>
+<%- include ('../partials/bottom.ejs'); %>
+

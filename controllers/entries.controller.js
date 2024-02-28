@@ -62,7 +62,25 @@ export const getEntries = async (req, res) => {
     };
 };
 
-
+export const getEntry = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const entry = await Entries.findOne({
+            include: [{
+                model: Persons,
+                as: 'persons',
+            }],
+            where: {id},
+        });
+        if (!entry) {
+            return res.status(404).json({status:404,message: 'Registro no encontrado'});
+        };
+        return res.status(200).json(entry);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({status:500,message: 'Error al obtener el registro'});
+    };
+};
 
 export const getEntriesByDate = async (req, res) => {
     try {
@@ -92,3 +110,25 @@ export const getEntriesByDate = async (req, res) => {
     }
 };
 
+export const editEntry = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { ingreso, description='Sin datos'} = req.body;
+        const entry = await Entries.findOne({where: {id}});
+        if (!entry) {
+            return res.status(404).json({status:404,message: 'Registro no encontrado'});
+        };
+        const updatedEntry = await entry.update({
+            date: ingreso,
+            description,
+        });
+        if(updatedEntry){
+            return res.status(200).json({status:200,message: 'Registro actualizado correctamente'});
+        }else{
+            return res.status(400).json({status:400,message: 'Error al actualizar el registro, vuelva a intentar'});
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({status:500,message: 'Error al actualizar el registro'});
+    }
+};

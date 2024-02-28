@@ -18,9 +18,10 @@ formPerson.addEventListener('submit',async(e)=>{
         if(data.status === 200){
             registers.innerHTML = '';
             data.data.forEach(person => {
+                console.log('person',person);
                 let entriesHTML = ''; // Variable para almacenar las entradas de la persona como HTML
                 person.entries.forEach(entry => {
-                    entriesHTML += `<li>${dayjs(entry.date).format('DD-MM-YYYY HH:mm:ss')} - ${entry.description || 'Sin descripción'}</li>`;
+                    entriesHTML += `<li>${dayjs(entry.date).format('DD-MM-YYYY HH:mm:ss')} - ${entry.description || 'Sin descripción'} <a href="/registros/editar/${entry.id}" class="btn btn-outline-success btn-sm"><i class="bi bi-pencil-square"></i></a> </li>`;
                 });
             
                 registers.innerHTML += `

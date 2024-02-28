@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             <td>${entry.persons.name || 'Sin datos'}</td>
             <td>${entry.persons.address || 'Sin datos'}</td>
             <td>${entry.persons.class || 'Sin datos'}</td>
-            <td>${fechaFormateada} -- ${entry.description || 'Sin descripción'}</td>
+            <td>${fechaFormateada} -- ${entry.description || 'Sin descripción'} </td>
         </tr>
             `;
         });
